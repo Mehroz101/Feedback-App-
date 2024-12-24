@@ -19,14 +19,14 @@ const Login = () => {
                 name="username"
                 label="Username"
                 type="text"
-                placeholder="Enter your username"
+                placeHolder="Enter your username"
               />
               <CustomTextInput
                 name="password"
                 control={method.control}
                 label="Password"
                 type="password"
-                placeholder="Enter your password"
+                placeHolder="Enter your password"
               />
               <button type="submit">Login</button>
             </form>

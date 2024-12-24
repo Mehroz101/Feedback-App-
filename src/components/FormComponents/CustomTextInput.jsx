@@ -15,6 +15,7 @@ const CustomTextInput = ({
   errorMessage = "This field is required!",
   showErrorMessage = true,
   autoFocus = false,
+  onChange = () => {},
   ...props
 }) => {
   return (
@@ -31,6 +32,10 @@ const CustomTextInput = ({
             </label>
             <InputText
               {...field}
+              onChange={(e) => {
+                field.onChange(e); // Ensure `react-hook-form`'s `onChange` is triggered
+                onChange(e); // Custom onChange handling if needed
+              }}
               id={field.name}
               type={type}
               placeholder={placeHolder}

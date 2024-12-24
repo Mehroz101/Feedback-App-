@@ -19,28 +19,28 @@ const Signup = () => {
                 name="username"
                 label="Username"
                 type="text"
-                placeholder="Enter your username"
+                placeHolder="Enter your username"
               />
               <CustomTextInput
                 name="email"
                 control={method.control}
                 label="Email"
                 type="email"
-                placeholder="Enter your email"
+                placeHolder="Enter your email"
               />
               <CustomTextInput
                 name="password"
                 control={method.control}
                 label="Password"
                 type="password"
-                placeholder="Enter your password"
+                placeHolder="Enter your password"
               />
               <CustomTextInput
                 name="confirmPassword"
                 control={method.control}
                 label="Confirm Password"
                 type="password"
-                placeholder="Confirm your password"
+                placeHolder="Confirm your password"
               />
 
               <button type="submit">Login</button>
