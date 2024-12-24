@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-
+import CustomTextInput from "../../components/FormComponents/CustomTextInput";
 const ProfilePage = () => {
   const method = useForm({
     defaultValues: {
@@ -17,41 +17,41 @@ const ProfilePage = () => {
       <div className="profile">
         <h3>Profile</h3>
         <form action="" onSubmit={method.handleSubmit(onsubmit)}>
-          <div className="inputbox">
-            <label htmlFor="name">Name</label>
-            <input
-              type="text"
-              {...method.register("name", { required: true })}
-            />
-          </div>
-          <div className="inputbox">
-            <label htmlFor="rollno">Roll No</label>
-            <input
-              type="text"
-              {...method.register("rollno", { required: true })}
-            />
-          </div>
-          <div className="inputbox">
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              {...method.register("email", { required: true })}
-            />
-          </div>
-          <div className="inputbox">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              {...method.register("password", { required: true })}
-            />
-          </div>
-          <div className="inputbox">
-            <label htmlFor="role">Role</label>
-            <input
-              type="text"
-              {...method.register("role", { required: true })}
-            />
-          </div>
+          <CustomTextInput
+            control={method.control}
+            name="name"
+            label="Name"
+            type="text"
+            placeholder="Enter your name"
+          />
+          <CustomTextInput
+            control={method.control}
+            name="rollno"
+            label="Roll No"
+            type="text"
+            placeholder="Enter your roll no"
+          />
+          <CustomTextInput
+            control={method.control}
+            name="email"
+            label="Email"
+            type="email"
+            placeholder="Enter your email"
+          />
+          <CustomTextInput
+            control={method.control}
+            name="password"
+            label="Password"
+            type="password"
+            placeholder="Enter your password"
+          />
+          <CustomTextInput
+            control={method.control}
+            name="role"
+            label="Role"
+            type="text"
+            placeholder="Enter your role"
+          />
 
           <input type="submit" value="Submit" />
         </form>

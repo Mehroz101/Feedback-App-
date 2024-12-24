@@ -1,4 +1,4 @@
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faPeopleGroup, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import StudentCard from "../../components/StudentCard";
@@ -50,8 +50,20 @@ const ClassRoomPage = () => {
   return (
     <div className="classroom_page">
       <div className="classroom_header">
-        <h1>Classroom: BS Information Technology</h1>
-        <p>Total Students: {students.length}</p>
+        <div className="headerTop">
+          <h1>Classroom: BS Information Technology</h1>
+          <button>Join</button>
+        </div>
+        <div className="card_count">
+          <div className="left">
+            Total Students: <span>{students.length}</span>{" "}
+          </div>
+          <div className="right">
+            <div className="icon">
+              <FontAwesomeIcon icon={faPeopleGroup} />
+            </div>
+          </div>
+        </div>
       </div>
       <div className="student_cards">
         {students.map((student, index) => (

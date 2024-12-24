@@ -183,25 +183,72 @@
     padding: 20px;
     font-family: Arial, sans-serif;
     background-color: #f3f4f6;
+    height: 100vh;
   }
   
   .classroom_header {
-    text-align: center;
+    /* text-align: center; */
     margin-bottom: 20px;
   }
-  
+  .classroom_header .headerTop{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
   .classroom_header h1 {
     margin: 0;
     font-size: 24px;
     color: #2c3e50;
   }
   
-  .classroom_header p {
-    margin: 5px 0 0;
-    color: #7f8c8d;
+  .classroom_header button {
+    background-color: #6a1b9a;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
     font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
   }
   
+  .classroom_header button:hover {
+    background-color: #8e24aa;
+  }
+
+  
+  .classroom_header .card_count {
+    margin: 20px 0 0;
+    color: white;
+    font-size: 16px;
+    background-color: purple;
+    max-width: 300px;
+    padding: 30px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+
+  }
+  .classroom_header .card_count .left{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-weight: 600;
+
+  }
+  .classroom_header .card_count .right{
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(202, 31, 202);
+    width: 40px ;
+    height: 40px;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;    
+  }
+
+
   /* Student Card Styles */
   .student_cards {
     display: flex;
