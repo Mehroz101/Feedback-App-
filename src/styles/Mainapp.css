@@ -47,6 +47,7 @@
       width: 100%;
       background-color: #333;
       max-height: 0;
+      z-index: 100;
       transition: max-height 0.3s ease-in-out;
     }
     .navlink.hide{
@@ -422,6 +423,276 @@
   @media (max-width: 768px) {
     .student_card {
       width: 100%;
+    }
+  }
+  
+
+  /* =============================================Student Profile page=============================================== */
+  /* =============================================Student Profile Nav=============================================== */
+  
+  
+  .stdprofile .StdNav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #333;
+    color: #fff;
+    position: relative;
+    width: 100%;
+
+  }
+  
+  .stdprofile .StdNav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding: 0;
+  
+  }
+  
+  .stdprofile .StdNav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    text-align: left;
+
+    transition: color 0.3s;
+  }
+  
+  .stdprofile .StdNav ul li a:hover {
+    color: purple;
+  }
+  /* =============================================Student Profile page=============================================== */
+  .profile{
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    margin: 50px auto;
+  padding: 20px 10px;
+
+  }
+  .profile h3{
+   margin-bottom: 0;
+
+  }
+  .profile form{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+  }
+  .profile form .inputbox{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 100%;
+    margin: 15px 0px 0;
+  }
+  .profile form .inputbox label{
+    margin: 0px 0px 5px 0px;
+  }
+  .profile form .inputbox input{
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    resize: none;
+  }
+  .profile form .inputbox input:focus{
+    outline: none;
+  }
+  .profile form .inputbox select{
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    margin-bottom: 15px;
+    resize: none;
+  }
+  .profile form .inputbox select:focus{
+    outline: none;
+  }
+  .profile form .inputbox button{
+    background: purple;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;    
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  .profile form .inputbox button:hover{
+    background: #6a1b9a;
+  }
+  .profile form input[type="submit"]{
+    background: purple;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;    
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    width: 100%;
+    margin-top: 20px;
+    
+  }
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .profile {
+      width: 100%;
+      margin: 20px auto;
+    }
+  }
+
+  /* =============================================Student Main Profile page=============================================== */
+  .profilemain .profilemaincards{
+    display: flex;
+    margin-top: 30px;
+    justify-content:center ;
+    gap: 20px;  
+    flex-wrap: wrap;
+  }
+
+.recentactivities{
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px 0;
+  width: 100%;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+/* Review Component Styling */
+.review {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px 0;
+    width: 100%;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+  
+  .review:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Top Section */
+  .review .top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+  
+  .review .name {
+    font-size: 16px;
+    font-weight: bold;
+    color: #2c3e50;
+  }
+  
+  .review .date {
+    font-size: 14px;
+    color: #7f8c8d;
+  }
+  
+  /* Percentage Section */
+  .review .reviewpercentage {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+  
+  .review .reviewpercentage .title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #34495e;
+  }
+  
+  .review .reviewpercentage .number {
+    font-size: 16px;
+    font-weight: 600;
+    color: #27ae60; /* Green for positive percentage */
+  }
+  
+  /* Review Message Section */
+  .review .reviewMsg {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+  }
+  
+  /* Pros and Cons Styling */
+  .review .pros, .review .cons {
+    width: 48%;
+  }
+  .review .pros{
+    background-color: #ecf8e0;
+    border-radius: 6px;
+    padding: 10px;
+  }
+  .review .cons{
+    background-color: #ecf8e0;
+    border-radius: 6px;
+    padding: 10px;
+  }
+  .review .title {
+    font-size: 14px;
+    font-weight: bold;
+    color: #34495e;
+  }
+  
+  .review .msg {
+    font-size: 14px;
+    color: #7f8c8d;
+    line-height: 1.5;
+  }
+  
+  /* Pros Section */
+  .review .pros .msg {
+    padding: 10px;
+    border-radius: 6px;
+    color: #2ecc71;
+  }
+  .review .cons .msg {
+    padding: 10px;
+    border-radius: 6px;
+    color: #cc2e2e;
+  }
+  
+  /* Cons Section */
+  .review .cons  {
+    padding: 10px;
+    border-radius: 6px;
+    background-color: #ff9f95;
+    color: #df0505;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .review {
+      max-width: 100%;
+      padding: 15px;
+    }
+  
+    .review .top {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .review .name, .review .date {
+      margin-bottom: 5px;
+    }
+  
+    .review .reviewMsg {
+      flex-direction: column;
+    }
+  
+    .review .pros, .review .cons {
+      width: 100%;
+      margin-bottom: 10px;
     }
   }
   

@@ -10,6 +10,9 @@ import {
   ProtectedRoute,
   Setting,
   Signup,
+  StdProfile,
+  StdProfileMain,
+  StdProfileSetting,
   Users,
 } from "./utils/LazyLoadComponent";
 import { Suspense } from "react";
@@ -62,6 +65,14 @@ function App() {
               {/* Nested Routes (relative paths) */}
               <Route index element={<MainHome />} />
               <Route path="/classroom" element={<ClassRoom />} />
+              <Route path="/profile" element={<StdProfile />}>
+                <Route index element={<StdProfileMain />} />
+                <Route path="Dashboard" element={<StdProfile />} />
+                <Route
+                  path="/profile/setting"
+                  element={<StdProfileSetting />}
+                />
+              </Route>
             </Route>
             <Route
               path="/dashboard"

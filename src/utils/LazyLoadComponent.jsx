@@ -12,3 +12,10 @@ export const Layout = lazy(() => import("../layout/Layout"));
 export const MainApp = lazy(() => import("../MainApp/pages/mainapp"));
 export const MainHome = lazy(() => import("../MainApp/pages/Home"));
 export const ClassRoom = lazy(() => import("../MainApp/pages/ClassRoom"));
+export const StdProfile = lazy(() => import("../MainApp/pages/StdProfile"));
+export const StdProfileMain = lazy(() =>
+  import("../MainApp/components/StdProfileMain")
+);
+export const StdProfileSetting = lazy(() =>
+  import("../MainApp/components/ProfilePageSetting")
+);

@@ -1,6 +1,7 @@
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
+import StudentCard from "../../components/StudentCard";
 
 const students = [
   {
@@ -30,12 +31,10 @@ const students = [
 ];
 
 const ClassRoomPage = () => {
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
   const [reviewPercentage, setReviewPercentage] = useState(50);
   const [reviewMessage, setReviewMessage] = useState("");
-  const radius = 60; // Reduced Radius of the circle
-  const circumference = 2 * Math.PI * radius;
-  const offset = circumference - (50 / 100) * circumference;
+
   const handleReviewClick = () => {
     console.log("Review button clicked");
     setShowModal(true);
@@ -56,42 +55,11 @@ const ClassRoomPage = () => {
       </div>
       <div className="student_cards">
         {students.map((student, index) => (
-          <div key={index} className="student_card">
-            <div className={`badge ${student.role.toLowerCase()}`}>
-              {student.role}
-            </div>
-            <div className="student_info">
-              <h3>{student.name}</h3>
-              <p>Roll No: {student.rollNumber}</p>
-            </div>
-            <div className="score-card">
-              <svg className="circle" width="140" height="140">
-                <circle
-                  className="background"
-                  cx="70"
-                  cy="70"
-                  r={radius}
-                ></circle>
-                <circle
-                  className="progress"
-                  cx="70"
-                  cy="70"
-                  r={radius}
-                  strokeDasharray={circumference}
-                  strokeDashoffset={offset}
-                ></circle>
-              </svg>
-              <div className="score">{"50"}%</div>
-            </div>
-            <button
-              className="review_button"
-              onClick={() => {
-                handleReviewClick();
-              }}
-            >
-              Add Review
-            </button>
-          </div>
+          <StudentCard
+            key={index}
+            student={student}
+            handleReviewClick={handleReviewClick}
+          />
         ))}
       </div>
       {showModal && (
@@ -114,17 +82,30 @@ const ClassRoomPage = () => {
               />
               <span className="givenpercentage">{reviewPercentage}%</span>
             </div>
-
-            <label htmlFor="message">Message:</label>
-            <textarea
-              id="message"
-              rows="4"
-              cols="10"
-              resize="none"
-              value={reviewMessage}
-              onChange={(e) => setReviewMessage(e.target.value)}
-              placeholder="Enter your review message here"
-            ></textarea>
+            <div className="msgbox">
+              <label htmlFor="message">Good Thing in me</label>
+              <textarea
+                id="message"
+                rows="4"
+                cols="10"
+                resize="none"
+                value={reviewMessage}
+                onChange={(e) => setReviewMessage(e.target.value)}
+                placeholder="Enter your review message here"
+              ></textarea>
+            </div>
+            <div className="msgbox">
+              <label htmlFor="message">Bad Thing in me</label>
+              <textarea
+                id="message"
+                rows="4"
+                cols="10"
+                resize="none"
+                value={reviewMessage}
+                onChange={(e) => setReviewMessage(e.target.value)}
+                placeholder="Enter your review message here"
+              ></textarea>
+            </div>
 
             <div className="modal_actions">
               <button className="submit_button" onClick={handleSubmitReview}>
