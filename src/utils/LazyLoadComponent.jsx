@@ -7,3 +7,8 @@ export const Setting = lazy(() => import("../pages/Setting"));
 export const Home = lazy(() => import("../pages/Home"));
 export const ProtectedRoute = lazy(() => import("../context/ProtectedRoutes"));
 export const Layout = lazy(() => import("../layout/Layout"));
+
+//
+export const MainApp = lazy(() => import("../MainApp/pages/mainapp"));
+export const MainHome = lazy(() => import("../MainApp/pages/Home"));
+export const ClassRoom = lazy(() => import("../MainApp/pages/ClassRoom"));
