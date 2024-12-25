@@ -1,0 +1,28 @@
+.student-card {
+    width: 180px;
+    padding: 20px;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+.p-knob-range	{
+    background-color: red;
+    color: red;
+}
+  .p-knob-value{
+    background-color: red;
+    color: red;
+  }
+  .student-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-top: 10px;
+  }
+  
