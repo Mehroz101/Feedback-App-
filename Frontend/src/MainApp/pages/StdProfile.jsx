@@ -12,6 +12,9 @@ const StdProfile = () => {
               <Link to={"/profile"}>Profile</Link>
             </li>
             <li>
+              <Link to={"/profile/createroom"}>Create Room</Link>
+            </li>
+            <li>
               <Link to={"/profile/setting"}>Settings</Link>
             </li>
           </ul>

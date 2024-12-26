@@ -19,3 +19,6 @@ export const StdProfileMain = lazy(() =>
 export const StdProfileSetting = lazy(() =>
   import("../MainApp/components/ProfilePageSetting")
 );
+export const CreateRoom = lazy(() =>
+  import("../MainApp/components/CreateRoom")
+);

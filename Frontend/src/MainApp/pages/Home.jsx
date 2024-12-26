@@ -58,6 +58,7 @@ const Home = () => {
   const [classrooms, setClassrooms] = useState(classroomsData);
   const [filteredClassrooms, setFilterClassrooms] = useState(classroomsData);
   const [selectedUniversity, setSelectedUniversity] = useState([]);
+  const [showFilter, setShowFilter] = useState(false);
 
   const method = useForm({
     defaultValues: {
@@ -65,16 +66,9 @@ const Home = () => {
     },
   });
 
-  const filterClassroomsByName = (name) => {
-    const filteredClasses = classrooms.filter((classroom) =>
-      classroom.title.toLowerCase().includes(name.toLowerCase())
-    );
-    setFilterClassrooms(filteredClasses);
-  };
-
   const filterClassroomsByUniversity = () => {
     const filteredClasses = classrooms.filter((classroom) => {
-      if (selectedUniversity.length === 0) return true; // Show all if no university is selected
+      if (selectedUniversity.length === 0) return true;
       return selectedUniversity.some((university) =>
         classroom.location.toLowerCase().includes(university.toLowerCase())
       );
@@ -90,6 +84,20 @@ const Home = () => {
         : prev.filter((university) => university !== value)
     );
   };
+  const applyFilters = (name) => {
+    const filteredClasses = classrooms.filter((classroom) => {
+      const matchesName = classroom.title
+        .toLowerCase()
+        .includes(name.toLowerCase());
+      const matchesUniversity =
+        selectedUniversity.length === 0 ||
+        selectedUniversity.some((university) =>
+          classroom.location.toLowerCase().includes(university.toLowerCase())
+        );
+      return matchesName && matchesUniversity;
+    });
+    setFilterClassrooms(filteredClasses);
+  };
 
   useEffect(() => {
     filterClassroomsByUniversity();
@@ -104,51 +112,62 @@ const Home = () => {
     <>
       <div className="classroompage">
         <h1>Classrooms</h1>
-        <div className="searchbox">
-          <CustomTextInput
-            control={method.control}
-            name="name"
-            type="text"
-            placeHolder="Enter classroom name"
-            onChange={(e) => {
-              filterClassroomsByName(e.target.value);
-              filterClassroomsByUniversity();
-            }}
-          />
+        <div className="search-filter-container">
+          <div className="searchbox">
+            <CustomTextInput
+              control={method.control}
+              name="name"
+              type="text"
+              placeHolder="Enter classroom name"
+              onChange={(e) => {
+                applyFilters(e.target.value);
+              }}
+            />
+          </div>
+          <div className="filter-dropdown">
+            <button
+              className="filter-toggle"
+              onClick={() => setShowFilter((prev) => !prev)}
+            >
+              Filter by University
+            </button>
+            {showFilter && (
+              <div className="dropdown-content">
+                <div className="universitybox">
+                  <input
+                    type="checkbox"
+                    name="emerson"
+                    id="emerson"
+                    value="Emerson University"
+                    onChange={handleUniversityChange}
+                  />
+                  <label htmlFor="emerson">Emerson University</label>
+                </div>
+                <div className="universitybox">
+                  <input
+                    type="checkbox"
+                    name="oxford"
+                    id="oxford"
+                    value="Oxford University"
+                    onChange={handleUniversityChange}
+                  />
+                  <label htmlFor="oxford">Oxford University</label>
+                </div>
+                <div className="universitybox">
+                  <input
+                    type="checkbox"
+                    name="harvard"
+                    id="harvard"
+                    value="Harvard University"
+                    onChange={handleUniversityChange}
+                  />
+                  <label htmlFor="harvard">Harvard University</label>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
         <div className="classrooms">
-          <div className="Classroomfilter">
-            <div className="universitybox">
-              <input
-                type="checkbox"
-                name="emerson"
-                id="emerson"
-                value="Emerson University"
-                onChange={handleUniversityChange}
-              />
-              <label htmlFor="emerson">Emerson University</label>
-            </div>
-            <div className="universitybox">
-              <input
-                type="checkbox"
-                name="oxford"
-                id="oxford"
-                value="Oxford University"
-                onChange={handleUniversityChange}
-              />
-              <label htmlFor="oxford">Oxford University</label>
-            </div>
-            <div className="universitybox">
-              <input
-                type="checkbox"
-                name="harvard"
-                id="harvard"
-                value="Harvard University"
-                onChange={handleUniversityChange}
-              />
-              <label htmlFor="harvard">Harvard University</label>
-            </div>
-          </div>
           {filteredClassrooms.map((classroom, index) => (
             <ClassRoomCard key={index} classroom={classroom} />
           ))}

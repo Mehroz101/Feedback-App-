@@ -31,13 +31,13 @@ const ProfilePage = () => {
             type="text"
             placeholder="Enter your roll no"
           />
-          <CustomTextInput
+          {/* <CustomTextInput
             control={method.control}
             name="email"
             label="Email"
             type="email"
             placeholder="Enter your email"
-          />
+          /> */}
           <CustomTextInput
             control={method.control}
             name="password"

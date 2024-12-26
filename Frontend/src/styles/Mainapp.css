@@ -78,13 +78,56 @@
     padding: 0 20px;
 
 }
-.classroompage .searchbox{
-    display: flex;
-    justify-content: center;
-    margin: 0 auto;
-    align-items: center;
-    margin-bottom: 20px;
-    max-width: 600px;
+.search-filter-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.searchbox {
+  flex: 1;
+  max-width: 600px;
+  min-width: 250px;
+}
+
+.filter-dropdown {
+  position: relative;
+  margin-bottom: 9px;
+}
+
+.filter-toggle {
+  background-color: #6a1b9a;
+  color: #fff;
+  padding: 16px 20px;
+  border: none;
+  border-radius: 0 4px 4px 0;
+
+  cursor: pointer;
+}
+
+.filter-toggle:hover {
+  background-color: #8e24aa;
+}
+
+.dropdown-content {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #f3f4f6;
+  padding: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  z-index: 10;
+}
+
+.universitybox {
+  margin-bottom: 10px;
+}
+
+.universitybox label {
+  margin-left: 8px;
 }
 
 
@@ -94,7 +137,6 @@
     justify-content: center;
     margin-top: 2rem;
     gap: 1rem;
-    margin-left: 200px;
   }
   .classroompage .classrooms .Classroomfilter{
     display: flex;
@@ -772,5 +814,56 @@
       width: 100%;
       margin-bottom: 10px;
     }
+  }
+  
+  /* ============================================= Create Room Page=============================================== */
+
+  .create-room {
+    max-width: 600px;
+    margin: 20px auto;
+    font-family: Arial, sans-serif;
+  }
+  
+  h1, h2, h3 {
+    color: #333;
+  }
+  
+  label {
+    display: block;
+    margin: 10px 0 5px;
+  }
+  
+  input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  .student-list ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .student-list li {
+    margin: 5px 0;
+    padding: 8px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
   }
   

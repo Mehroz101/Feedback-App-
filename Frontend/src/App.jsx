@@ -2,6 +2,7 @@ import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import {
   ClassRoom,
+  CreateRoom,
   Home,
   Layout,
   Login,
@@ -64,10 +65,15 @@ function App() {
             <Route path="/" element={<ProtectedRoute element={<MainApp />} />}>
               {/* Nested Routes (relative paths) */}
               <Route index element={<MainHome />} />
+
               <Route path="/classroom" element={<ClassRoom />} />
+
               <Route path="/profile" element={<StdProfile />}>
                 <Route index element={<StdProfileMain />} />
-                <Route path="Dashboard" element={<StdProfile />} />
+                <Route path="/profile/createroom" element={<CreateRoom />}>
+                  <Route index element={<CreateRoom />} />
+                </Route>
+                {/* <Route path="Dashboard" element={<StdProfile />} /> */}
                 <Route
                   path="/profile/setting"
                   element={<StdProfileSetting />}
