@@ -40,7 +40,7 @@ const CustomTextInput = ({
             />
 
             {showErrorMessage && error && (
-              <span className="error-message">{errorMessage}</span>
+              <span className="error-message text-red-500 text-sm">{errorMessage}</span>
             )}
           </>
         )}

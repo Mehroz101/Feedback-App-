@@ -4,6 +4,7 @@ const {
   DashboardData,
   GetAllUsers,
   AddUser,
+  DeleteUser
 } = require("../controllers/DashboardController");
 const router = express.Router();
 
@@ -118,4 +119,29 @@ router.get("/users", authMiddleware, GetAllUsers);
  *         description: User added successfully
  */
 router.post("/adduser", authMiddleware, AddUser);
+
+/**
+ * @swagger
+ * /api/adduser:
+ *   post:
+ *     summary: Delete user
+ *     tags: [Dashboard]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               _id
+ * 
+ *     responses:
+ *       201:
+ *         description: User deleted successfully
+ */
+
+
+router.post("/deleteuser", authMiddleware, DeleteUser);
 module.exports = router;

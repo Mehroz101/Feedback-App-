@@ -2,7 +2,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { Column } from "primereact/column";
 import { DataTable } from "primereact/datatable";
 import React, { useEffect, useState } from "react";
-import { AddUser, GetAllUsers } from "../Services/DashboardApis";
+import { AddUser, GetAllUsers, deleteUser } from "../Services/DashboardApis";
 import { use } from "react";
 import { Button } from "primereact/button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -38,7 +38,7 @@ const Users = () => {
     },
   });
 
-  const UsersData = useQuery({
+  const {data:UsersData , refetch:refetchUserData , isLoading:loadingUserData} = useQuery({
     queryKey: ["users"],
     queryFn: GetAllUsers,
   });
@@ -54,7 +54,7 @@ const Users = () => {
         method.resetField("role");
         method.resetField("password");
         method.resetField("confirmPassword");
-        UsersData.refetch();
+        refetchUserData();
       } else {
         notify("error", data.message);
       }
@@ -63,6 +63,21 @@ const Users = () => {
       notify("error", error.message);
     },
   });
+  const deleteMutation = useMutation({
+    mutationFn:deleteUser,
+    onSuccess:(data)=>{
+      if(data.success){
+        notify("success",data.message);
+        refetchUserData();
+      }
+      else{
+        notify("error",data.message);
+      }
+    },
+    onError:(error)=>{
+      notify("error",error.message);
+    }
+  })
 
   const onSubmit = (data) => {
     AddUserMutation.mutate({
@@ -77,12 +92,11 @@ const Users = () => {
     });
   };
   useEffect(() => {
-    if (!UsersData.isPending) {
-      console.log("data");
-      console.log(UsersData.data);
-      setUsers(UsersData.data);
+    if (!loadingUserData) {
+      console.log(UsersData)
+      setUsers(UsersData);
     }
-  }, [UsersData.isPending]);
+  }, [loadingUserData]);
   const columns = [
     { field: "username", header: "Username" },
     { field: "rollno", header: "Roll No" },
@@ -101,7 +115,7 @@ const Users = () => {
     { label: "GR", value: "GR" },
     { label: "CR", value: "CR" },
   ];
-  if (UsersData.isPending) return <h1>Loading...</h1>;
+  if (loadingUserData) return <h1>Loading...</h1>;
   return (
     <>
       <div className="usersPage">
@@ -128,7 +142,7 @@ const Users = () => {
             rows={10}
             dataKey="id"
             filterDisplay="row"
-            loading={UsersData.isLoading}
+            loading={loadingUserData}
             globalFilterFields={[
               "username",
               "rollno",
@@ -182,6 +196,11 @@ const Users = () => {
                         color: "red",
                         border: "1px solid red",
                       }}
+                      disabled={deleteMutation.isPending}
+                      onClick={()=>{
+                        console.log(rowData)
+                        deleteMutation.mutate({userId: rowData._id})
+                      }}
                     />
                     <Button
                       label=""
@@ -218,6 +237,7 @@ const Users = () => {
               name="username"
               label="Username"
               type="text"
+              rules={{ required: true }}
               placeholder="Enter your username"
             />
             <CustomTextInput
@@ -262,6 +282,7 @@ const Users = () => {
               optionValue="value"
               placeholder="Select a role"
               options={roles}
+              required={true}
               onChange={(e) => {
                 method.setValue("role", e.value);
               }}
@@ -271,12 +292,16 @@ const Users = () => {
               name="password"
               label="Password"
               type="password"
+              rules={{ required: true }}
+
               placeholder="Enter your password"
             />
             <CustomTextInput
               control={method.control}
               name="confirmPassword"
               label="Confirm Password"
+              rules={{ required: true }}
+
               type="password"
               placeholder="Enter your password"
             />

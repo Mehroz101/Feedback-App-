@@ -18,13 +18,14 @@ const GetAllUsers = async (req, res) => {
   try {
     const data = await User.find();
     const sendData = data.map((user) => ({
+      _id : user._id,
       username: user.username,
       password: user.password,
       role: user.role,
-      gender: user.gender ?? "none",
-      rollno: user.rollno ?? "none",
-      classRoom: user.classRoom ?? "none",
-      university: user.university ?? "none",
+      gender: user.gender ?? null,
+      rollno: user.rollno ?? null,
+      classRoom: user.classRoom ?? null,
+      university: user.university ?? null,
     }));
     res.status(200).send({ success: true, data: sendData });
   } catch (error) {
@@ -73,4 +74,20 @@ const AddUser = async (req, res) => {
     res.status(500).send({ success: false, message: error.message });
   }
 };
-module.exports = { DashboardData, GetAllUsers, AddUser };
+
+const DeleteUser = async (req,res)=>{
+  try {
+    const {userId} = req.body;
+    const response =await User.findByIdAndDelete(userId)
+    if(response){
+      res.status(201).send({success:true,message:"User deleted successfully"})
+    }
+    else{
+      res.status(201).send({success:false,message:"User not found"})
+
+    }
+  } catch (error) {
+    res.status(500).send({success:false,message:"Internal Server Error"})
+  }
+}
+module.exports = { DashboardData, GetAllUsers, AddUser,DeleteUser };

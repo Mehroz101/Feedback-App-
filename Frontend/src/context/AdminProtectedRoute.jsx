@@ -7,10 +7,12 @@ const AdminProtectedRoute = ({ element }) => {
 
   useEffect(() => {
     const token = localStorage.getItem("qwe2eDSA3r2");
-    if (token) {
+
+    if (token === true) {
+
       setIsAuthenticated(true); // User is authenticated
     } else {
-      return navigate("/not-found");
+      // return navigate("/not-found");
     }
   }, [navigate]);
 
