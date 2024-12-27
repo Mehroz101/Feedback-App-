@@ -1,7 +1,8 @@
 import React from "react";
 import { Controller } from "react-hook-form";
 import { InputText } from "primereact/inputtext";
-const CustomTextInput = ({
+import { Password } from "primereact/password";
+const CPassword = ({
   control,
   name,
   rules,
@@ -13,6 +14,7 @@ const CustomTextInput = ({
   placeholder = "",
   errorMessage = "This field is required!",
   showErrorMessage = true,
+  toggleMask = false,
   autoFocus = false,
   ...props
 }) => {
@@ -29,14 +31,33 @@ const CustomTextInput = ({
               {label}
               {required && <span className="text-red-700 fw-bold ">*</span>}
             </label>
-            <InputText
+            <Password
               {...field}
               id={field.name}
               type={type}
+              toggleMask={toggleMask}
               placeholder={placeholder}
               autoFocus={autoFocus}
               disabled={!isEnable}
-              className={`custom-input ${error ? "input-error" : ""}`}
+              className={`custom-input  ${error ? "input-error" : ""}`}
+              style={{
+                width: "100%",
+              }}
+              pt={{
+                root: {
+                  style: {
+                    width: "100%",
+                    padding: "0",
+                    fontSize: ".9em",
+                  },
+                },
+                input: {
+                  style: {
+                    width: "100%",
+                    padding: "0.5rem",
+                  },
+                },
+              }}
             />
 
             {showErrorMessage && error && (
@@ -49,4 +70,4 @@ const CustomTextInput = ({
   );
 };
 
-export default CustomTextInput;
+export default CPassword;
