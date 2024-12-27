@@ -15,7 +15,7 @@ const signup = async (req, res) => {
         const user = new User({
           username,
           password,
-          role: "student",
+          role: "STD",
         });
         await user.save();
         res.status(201).send({

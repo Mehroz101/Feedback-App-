@@ -31,5 +31,46 @@ const GetAllUsers = async (req, res) => {
     res.status(500).send({ success: false, message: error.message });
   }
 };
-
-module.exports = { DashboardData, GetAllUsers };
+const AddUser = async (req, res) => {
+  try {
+    const {
+      username,
+      rollno,
+      classRoom,
+      university,
+      gender,
+      role,
+      password,
+      confirmPassword,
+    } = req.body;
+    if (password === confirmPassword) {
+      const isUserExits = await User.findOne({ username });
+      if (isUserExits) {
+        return res
+          .status(400)
+          .send({ success: false, message: "User already exists" });
+      } else {
+        const user = new User({
+          username,
+          rollno,
+          classRoom,
+          university,
+          gender,
+          role,
+          password,
+        });
+        await user.save();
+        res
+          .status(201)
+          .send({ success: true, message: "User Created Successfully" });
+      }
+    } else {
+      res
+        .status(400)
+        .send({ success: false, message: "Password does not match" });
+    }
+  } catch (error) {
+    res.status(500).send({ success: false, message: error.message });
+  }
+};
+module.exports = { DashboardData, GetAllUsers, AddUser };

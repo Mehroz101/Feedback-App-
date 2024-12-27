@@ -44,3 +44,20 @@ export const GetAllUsers = async () => {
     console.error(error);
   }
 };
+export const AddUser = async (data) => {
+  const token = localStorage.getItem("qwe2eDSA3r2");
+  if (!token) return;
+  const tokensend = localStorage.getItem("feedbackapptoken");
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${tokensend}`,
+    },
+  };
+  try {
+    const response = await axios.post(`${API_URL}/adduser`, data, config);
+    return response?.data;
+  } catch (error) {
+    console.error(error);
+  }
+};

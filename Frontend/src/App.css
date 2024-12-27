@@ -10,3 +10,6 @@
 .input-box > div{
     min-width: 100px;
 }
+.custom-input-container{
+    display: flex;flex-direction: column;
+}

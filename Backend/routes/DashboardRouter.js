@@ -3,6 +3,7 @@ const authMiddleware = require("../middleware/AuthMiddleware");
 const {
   DashboardData,
   GetAllUsers,
+  AddUser,
 } = require("../controllers/DashboardController");
 const router = express.Router();
 
@@ -80,4 +81,41 @@ router.get("/dashboarddata", authMiddleware, DashboardData);
  */
 
 router.get("/users", authMiddleware, GetAllUsers);
+
+/**
+ * @swagger
+ * /api/adduser:
+ *   post:
+ *     summary: Add a new user
+ *     tags: [Dashboard]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *               rollno:
+ *                 type: string
+ *               classRoom:
+ *                 type: string
+ *               university:
+ *                 type: string
+ *               gender:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *               confirmPassword:
+ *                 type: string
+ *               role:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: User added successfully
+ */
+router.post("/adduser", authMiddleware, AddUser);
 module.exports = router;

@@ -17,7 +17,7 @@ const CustomTextInput = ({
   ...props
 }) => {
   return (
-    <div className="custom-input-container  ">
+    <div className="custom-input-container">
       <Controller
         name={name}
         control={control}

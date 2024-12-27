@@ -1,8 +1,8 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { Column } from "primereact/column";
 import { DataTable } from "primereact/datatable";
 import React, { useEffect, useState } from "react";
-import { GetAllUsers } from "../Services/DashboardApis";
+import { AddUser, GetAllUsers } from "../Services/DashboardApis";
 import { use } from "react";
 import { Button } from "primereact/button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,7 +10,9 @@ import { faEye, faPencil, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { Dialog } from "primereact/dialog";
 import CustomTextInput from "../components/FormComponents/CustomTextInput";
 import { useForm } from "react-hook-form";
-
+import CDropDown from "../components/FormComponents/CDropDown";
+import CDropdown from "../components/FormComponents/CDropDown";
+import { notify } from "../utils/notification";
 const Users = () => {
   const [users, setUsers] = useState([]);
   const [visible, setVisible] = useState(false);
@@ -40,6 +42,40 @@ const Users = () => {
     queryKey: ["users"],
     queryFn: GetAllUsers,
   });
+  const AddUserMutation = useMutation({
+    mutationFn: AddUser,
+    onSuccess: (data) => {
+      if (data.success) {
+        notify("success", data.message);
+        setVisible(false);
+        method.resetField("username");
+        method.resetField("rollno");
+        method.resetField("gender");
+        method.resetField("role");
+        method.resetField("password");
+        method.resetField("confirmPassword");
+        UsersData.refetch();
+      } else {
+        notify("error", data.message);
+      }
+    },
+    onError: (error) => {
+      notify("error", error.message);
+    },
+  });
+
+  const onSubmit = (data) => {
+    AddUserMutation.mutate({
+      username: data.username,
+      rollno: data.rollno,
+      classRoom: data.classRoom,
+      university: data.university,
+      gender: data.gender,
+      role: data.role,
+      password: data.password,
+      confirmPassword: data.confirmPassword,
+    });
+  };
   useEffect(() => {
     if (!UsersData.isPending) {
       console.log("data");
@@ -54,6 +90,16 @@ const Users = () => {
     { field: "university", header: "University" },
     { field: "gender", header: "Gender" },
     { field: "role", header: "Role" },
+  ];
+  const genders = [
+    { label: "Male", value: "male" },
+    { label: "Female", value: "female" },
+  ];
+  const roles = [
+    { label: "Admin", value: "ADMIN" },
+    { label: "Student", value: "STD" },
+    { label: "GR", value: "GR" },
+    { label: "CR", value: "CR" },
   ];
   if (UsersData.isPending) return <h1>Loading...</h1>;
   return (
@@ -160,13 +206,13 @@ const Users = () => {
         <Dialog
           header={`${dialogType} User`}
           visible={visible}
-          style={{ width: "50vw" }}
+          style={{ width: "100%", maxWidth: "600px" }}
           onHide={() => {
             if (!visible) return;
             setVisible(false);
           }}
         >
-          <div className="inputfields">
+          <div className="inputfields flex flex-column gap-2">
             <CustomTextInput
               control={method.control}
               name="username"
@@ -195,19 +241,30 @@ const Users = () => {
               type="text"
               placeholder="Enter your university"
             />
-            <CustomTextInput
+            <label>Gender</label>
+            <CDropdown
               control={method.control}
               name="gender"
-              label="Gender"
-              type="text"
-              placeholder="Enter your gender"
+              optionLabel="label"
+              optionValue="value"
+              placeholder="Select a gender"
+              options={genders}
+              onChange={(e) => {
+                method.setValue("gender", e.value);
+              }}
             />
-            <CustomTextInput
+
+            <label>Role</label>
+            <CDropdown
               control={method.control}
               name="role"
-              label="Role"
-              type="text"
-              placeholder="Enter your role"
+              optionLabel="label"
+              optionValue="value"
+              placeholder="Select a role"
+              options={roles}
+              onChange={(e) => {
+                method.setValue("role", e.value);
+              }}
             />
             <CustomTextInput
               control={method.control}
@@ -227,7 +284,7 @@ const Users = () => {
               label="Submit"
               className="p-button-success"
               style={{ backgroundColor: "#0f7e01", border: "none" }}
-              onClick={method.handleSubmit(onsubmit)}
+              onClick={method.handleSubmit(onSubmit)}
             />
           </div>
         </Dialog>
