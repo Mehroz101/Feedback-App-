@@ -13,7 +13,16 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    gender: {
+      type: String,
+    },
     rollno: {
+      type: String,
+    },
+    classRoom: {
+      type: String,
+    },
+    university: {
       type: String,
     },
     isAdmin: {

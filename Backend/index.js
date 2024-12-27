@@ -8,7 +8,7 @@ require("dotenv").config();
 const path = require("path");
 
 const AuthRouter = require("./routes/AuthRouter.js");
-
+const DashboardRouter = require("./routes/DashboardRouter.js");
 const PORT = process.env.PORT || 5000;
 const app = express();
 app.use(express.json());
@@ -36,6 +36,7 @@ const swaggerSpec = swaggerDocument(options);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.use("/api/auth", AuthRouter); // Make sure this is correctly set up
+app.use("/api/dashboard", DashboardRouter);
 connectDB();
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

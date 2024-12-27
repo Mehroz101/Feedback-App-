@@ -38,11 +38,24 @@ const Navbar = () => {
                 Profile
               </Link>
             </li>
-            <li>
-              <Link to="/login" onClick={toggleMenu}>
-                Login
-              </Link>
-            </li>
+            {localStorage.getItem("feedbackapptoken") ? (
+              <li>
+                <Link
+                  onClick={() => {
+                    localStorage.removeItem("feedbackapptoken");
+                    window.location.reload();
+                  }}
+                >
+                  Logout
+                </Link>
+              </li>
+            ) : (
+              <li>
+                <Link to="/login" onClick={toggleMenu}>
+                  Login
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
       </div>

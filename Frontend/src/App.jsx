@@ -19,6 +19,8 @@ import {
 import { Suspense } from "react";
 import { ROUTES } from "./utils/routes";
 import { ErrorBoundary } from "react-error-boundary";
+import NotFound from "./pages/NotFound";
+import AdminProtectedRoute from "./context/AdminProtectedRoute";
 
 function Fallback({ error }) {
   const regex = /\((.*?):\d+:\d+\)/;
@@ -60,35 +62,31 @@ function App() {
             {/* Public Routes */}
             <Route path={ROUTES.LOGIN} element={<Login />} />
             <Route path={ROUTES.SIGNUP} element={<Signup />} />
-
-            {/* Protected Routes */}
+            {/* Protected Routes for Users */}
             <Route path="/" element={<ProtectedRoute element={<MainApp />} />}>
-              {/* Nested Routes (relative paths) */}
               <Route index element={<MainHome />} />
-
               <Route path="/classroom" element={<ClassRoom />} />
-
               <Route path="/profile" element={<StdProfile />}>
                 <Route index element={<StdProfileMain />} />
-                <Route path="/profile/createroom" element={<CreateRoom />}>
-                  <Route index element={<CreateRoom />} />
-                </Route>
-                {/* <Route path="Dashboard" element={<StdProfile />} /> */}
+                <Route path="/profile/createroom" element={<CreateRoom />} />
                 <Route
                   path="/profile/setting"
                   element={<StdProfileSetting />}
                 />
               </Route>
             </Route>
+            {/* Admin Routes */}
             <Route
               path="/dashboard"
-              element={<ProtectedRoute element={<Layout />} />}
+              element={<AdminProtectedRoute element={<Layout />} />}
             >
-              {/* Nested Routes (relative paths) */}
               <Route index element={<Home />} />
               <Route path="users" element={<Users />} />
               <Route path="setting" element={<Setting />} />
             </Route>
+            {/* Not Found Route */}
+            <Route path="/not-found" element={<NotFound />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </ErrorBoundary>
       </Suspense>
