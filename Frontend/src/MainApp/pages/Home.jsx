@@ -120,6 +120,7 @@ const Home = () => {
               type="text"
               placeHolder="Enter classroom name"
               onChange={(e) => {
+                console.log(e.target.value);
                 applyFilters(e.target.value);
               }}
             />

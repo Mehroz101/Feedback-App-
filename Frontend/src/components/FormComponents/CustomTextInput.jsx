@@ -14,6 +14,7 @@ const CustomTextInput = ({
   errorMessage = "This field is required!",
   showErrorMessage = true,
   autoFocus = false,
+  onChange = () => {},
   ...props
 }) => {
   return (
@@ -31,6 +32,12 @@ const CustomTextInput = ({
             </label>
             <InputText
               {...field}
+              onChange={(e) => {
+                field.onChange(e.target.value);
+                if (onChange) {
+                  onChange(e);
+                }
+              }}
               id={field.name}
               type={type}
               placeholder={placeholder}
@@ -40,7 +47,9 @@ const CustomTextInput = ({
             />
 
             {showErrorMessage && error && (
-              <span className="error-message text-red-500 text-sm">{errorMessage}</span>
+              <span className="error-message text-red-500 text-sm">
+                {errorMessage}
+              </span>
             )}
           </>
         )}
