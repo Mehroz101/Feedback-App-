@@ -21,7 +21,6 @@ import { ROUTES } from "./utils/routes";
 import { ErrorBoundary } from "react-error-boundary";
 import NotFound from "./pages/NotFound";
 import AdminProtectedRoute from "./context/AdminProtectedRoute";
-
 function Fallback({ error }) {
   const regex = /\((.*?):\d+:\d+\)/;
   const match = error.stack.match(regex);
