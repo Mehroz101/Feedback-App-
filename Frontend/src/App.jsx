@@ -51,7 +51,6 @@ function Fallback({ error }) {
     </div>
   );
 }
-
 function App() {
   return (
     <Router>
