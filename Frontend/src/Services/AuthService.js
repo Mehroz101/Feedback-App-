@@ -3,13 +3,7 @@ const API_BASE_URL = import.meta.env.REACT_APP_API_BASE_URL;
 const API_URL = `${API_BASE_URL}/api/auth`;
 export const SignUp = async (data) => {
   try {
-    // const token = localStorage.getItem("feedbackapptoken");
-    // const config = {
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     Authorization: `Bearer ${token}`,
-    //   },
-    // };
+   
     if (data.confirmPassword === data.password) {
       const response = await axios.post(`${API_URL}/signup`, data);
       console.log(response);
