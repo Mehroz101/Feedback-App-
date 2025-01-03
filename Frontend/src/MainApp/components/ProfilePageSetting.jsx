@@ -105,7 +105,6 @@ const ProfilePage = () => {
               }}
             />
           </div>
-         
           <CustomTextInput
             control={method.control}
             name="password"
@@ -119,9 +118,7 @@ const ProfilePage = () => {
             label="Confirm Password"
             type="password"
             placeholder="confirm password"
-          />
-          
-
+          />          
           <input type="submit" value="Submit" />
         </form>
       </div>

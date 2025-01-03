@@ -825,11 +825,21 @@
   /* ============================================= Create Room Page=============================================== */
 
   .create-room {
-    max-width: 600px;
-    margin: 20px auto;
+    /* max-width: 600px; */
+    margin: 20px 20px;
     font-family: Arial, sans-serif;
   }
-  
+  .create-room .inputbox {
+    max-width: 600px;
+    flex: 1;
+    min-width: 250px;
+  }
+  .create-room .classroom-info{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
   h1, h2, h3 {
     color: #333;
   }

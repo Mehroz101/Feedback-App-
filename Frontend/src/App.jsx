@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import {
   ClassRoom,
   CreateRoom,
+  EditStudents,
   Home,
   Layout,
   Login,
@@ -64,6 +65,7 @@ function App() {
             <Route path="/" element={<ProtectedRoute element={<MainApp />} />}>
               <Route index element={<MainHome />} />
               <Route path="/classroom" element={<ClassRoom />} />
+              {/* <Route path="/editstudents" element={<EditStudents />} /> */}
               <Route path="/profile" element={<StdProfile />}>
                 <Route index element={<StdProfileMain />} />
                 <Route path="/profile/createroom" element={<CreateRoom />} />
