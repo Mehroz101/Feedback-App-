@@ -12,7 +12,6 @@ const ProtectedRoute = ({ element }) => {
       navigate("/login"); // Redirect to login if no token
     }
   }, [navigate]);
-
   if (!isAuthenticated) {
     return null; // Don't render the protected component
   }
