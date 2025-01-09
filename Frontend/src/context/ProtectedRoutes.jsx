@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 const ProtectedRoute = ({ element }) => {
   const navigate = useNavigate();
   const [isAuthenticated, setIsAuthenticated] = useState(true);
-
   useEffect(() => {
     const token = localStorage.getItem("feedbackapptoken");
     if (token) {
