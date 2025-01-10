@@ -75,7 +75,7 @@ function App() {
                 />
               </Route>
             </Route>
-            {/* Admin Routes */
+          
             <Route
               path="/dashboard"
               element={<AdminProtectedRoute element={<Layout />} />}
