@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Navbar } from "../utils/LazyLoadComponent";
 import { Outlet } from "react-router-dom";
 import CustomSidebar from "../components/Sidebar/SideNavbar";
-
 const Layout = () => {
   const [visible, setVisible] = useState(false);
 
