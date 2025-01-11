@@ -4,7 +4,6 @@ import { Outlet } from "react-router-dom";
 import CustomSidebar from "../components/Sidebar/SideNavbar";
 const Layout = () => {
   const [visible, setVisible] = useState(false);
-
   return (
     <>
       {/* <div className="main_container">
