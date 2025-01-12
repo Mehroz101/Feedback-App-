@@ -2,7 +2,6 @@ import React from "react";
 import "../styles/RecentActivities.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
-
 const activities = [
   {
     id: 1,
