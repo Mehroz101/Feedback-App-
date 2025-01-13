@@ -17,13 +17,7 @@ export const SignUp = async (data) => {
 };
 export const SignIn = async (data) => {
   try {
-    // const token = localStorage.getItem("feedbackapptoken");
-    // const config = {
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     Authorization: `Bearer ${token}`,
-    //   },
-    // };
+  
     const response = await axios.post(`${API_URL}/signin`, data);
     console.log(response);
     return response.data;
