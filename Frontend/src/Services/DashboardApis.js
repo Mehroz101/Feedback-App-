@@ -21,7 +21,6 @@ export const getDashboardData = async () => {
   } catch (error) {
     console.error(error);
     return {success:false , message : error.response.data.message}
-
   }
 };
 export const GetAllUsers = async () => {
