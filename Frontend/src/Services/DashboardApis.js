@@ -24,7 +24,6 @@ export const getDashboardData = async () => {
 
   }
 };
-
 export const GetAllUsers = async () => {
   const token = localStorage.getItem("qwe2eDSA3r2");
   if (!token || token === false) return;
