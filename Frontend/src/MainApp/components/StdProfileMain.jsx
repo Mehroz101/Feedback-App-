@@ -34,7 +34,7 @@ const StdProfileMain = () => {
             handleReviewClick={() => {}}
             showBTn={false}
           />
-          <ClassRoomCard classroom={classDetail} />
+          {classDetail && <ClassRoomCard classroom={classDetail} />}
         </div>
         <div className="recentactivities">
           <h3>Recent Reviews</h3>
