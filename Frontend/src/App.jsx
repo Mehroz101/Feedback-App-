@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import {
   ClassRoom,
   CreateRoom,
-  EditStudents,
   Home,
   Layout,
   Login,
@@ -75,7 +74,7 @@ function App() {
                 />
               </Route>
             </Route>
-          
+
             <Route
               path="/dashboard"
               element={<AdminProtectedRoute element={<Layout />} />}

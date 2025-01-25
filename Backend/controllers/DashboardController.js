@@ -18,7 +18,7 @@ const GetAllUsers = async (req, res) => {
   try {
     const data = await User.find();
     const sendData = data.map((user) => ({
-      _id : user._id,
+      _id: user._id,
       username: user.username,
       password: user.password,
       role: user.role,
@@ -41,6 +41,7 @@ const AddUser = async (req, res) => {
       university,
       gender,
       role,
+      classID,
       password,
       confirmPassword,
     } = req.body;
@@ -75,19 +76,19 @@ const AddUser = async (req, res) => {
   }
 };
 
-const DeleteUser = async (req,res)=>{
+const DeleteUser = async (req, res) => {
   try {
-    const {userId} = req.body;
-    const response =await User.findByIdAndDelete(userId)
-    if(response){
-      res.status(201).send({success:true,message:"User deleted successfully"})
-    }
-    else{
-      res.status(201).send({success:false,message:"User not found"})
-
+    const { userId } = req.body;
+    const response = await User.findByIdAndDelete(userId);
+    if (response) {
+      res
+        .status(201)
+        .send({ success: true, message: "User deleted successfully" });
+    } else {
+      res.status(201).send({ success: false, message: "User not found" });
     }
   } catch (error) {
-    res.status(500).send({success:false,message:"Internal Server Error"})
+    res.status(500).send({ success: false, message: "Internal Server Error" });
   }
-}
-module.exports = { DashboardData, GetAllUsers, AddUser,DeleteUser };
+};
+module.exports = { DashboardData, GetAllUsers, AddUser, DeleteUser };

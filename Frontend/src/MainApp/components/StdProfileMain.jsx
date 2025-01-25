@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import StudentCard from "../../components/StudentCard";
 import ClassRoomCard from "./ClassRoomCard";
+import { useQuery } from "@tanstack/react-query";
+import { GetClassDetail } from "../../Services/MainAppService";
 const student = [
   {
     name: "John Doe",
@@ -9,7 +11,19 @@ const student = [
     role: "CR",
   },
 ];
+
 const StdProfileMain = () => {
+  const [classDetail, setClassDetail] = useState([]);
+  const { data: ClassDetails } = useQuery({
+    queryKey: ["ClassDetails"],
+    queryFn: GetClassDetail,
+  });
+  useEffect(() => {
+    if (ClassDetails) {
+      setClassDetail(ClassDetails[0]);
+    }
+  }, [ClassDetails]);
+
   return (
     <>
       <div className="profilemain">
@@ -20,7 +34,7 @@ const StdProfileMain = () => {
             handleReviewClick={() => {}}
             showBTn={false}
           />
-          <ClassRoomCard />
+          <ClassRoomCard classroom={classDetail} />
         </div>
         <div className="recentactivities">
           <h3>Recent Reviews</h3>

@@ -19,7 +19,10 @@ const userSchema = new mongoose.Schema(
     rollno: {
       type: String,
     },
-    classRoom: {
+    classID: {
+      type: Number,
+    },
+    className: {
       type: String,
     },
     university: {

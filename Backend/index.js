@@ -10,6 +10,7 @@ const path = require("path");
 const AuthRouter = require("./routes/AuthRouter.js");
 const DashboardRouter = require("./routes/DashboardRouter.js");
 const UserRouter = require("./routes/UserRouter.js");
+const ClassRouter = require("./routes/ClassRouter.js");
 const PORT = process.env.PORT || 5000;
 const app = express();
 app.use(express.json());
@@ -39,6 +40,7 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use("/api/auth", AuthRouter); // Make sure this is correctly set up
 app.use("/api/dashboard", DashboardRouter);
 app.use("/api/user", UserRouter);
+app.use("/api/class", ClassRouter);
 connectDB();
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

@@ -6,18 +6,18 @@ const ClassRoomCard = ({ classroom }) => {
   return (
     <div className="classroom">
       <div className="classroom_image">
-        <img src={classroom?.img} alt="Classroom" loading="lazy" />
+        <img src={classroom?.imageUrl} alt="Classroom" loading="lazy" />
       </div>
       <div className="classroom_content">
         <div className="classroom_text title">
-          <h3>{classroom?.title}</h3>
+          <h3>{classroom?.className}</h3>
         </div>
         <div className="classroom_text location">
-          <span>{classroom?.location}</span>
+          <span>{classroom?.universityName}</span>
         </div>
         <div className="classroom_text numberofstudent">
           <span className="title">No. of Students:</span>
-          <span className="number">{classroom?.numberofstudent}</span>
+          <span className="number">{classroom?.noOfStudents || 0}</span>
         </div>
         <div className="classroom_button">
           <button

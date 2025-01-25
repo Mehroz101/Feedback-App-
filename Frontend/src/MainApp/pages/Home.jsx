@@ -2,61 +2,68 @@ import React, { useEffect, useState } from "react";
 import ClassRoomCard from "../components/ClassRoomCard";
 import CustomTextInput from "../../components/FormComponents/CustomTextInput";
 import { useForm } from "react-hook-form";
+import { useQuery } from "@tanstack/react-query";
+import { GetAllClasses } from "../../Services/MainAppService";
 
 const Home = () => {
-  const classroomsData = [
-    {
-      img: "https://via.placeholder.com/150",
-      title: "Classroom 1",
-      location: "Emerson University, Multan",
-      numberofstudent: 85,
-    },
-    {
-      img: "https://via.placeholder.com/150",
-      title: "Classroom 2",
-      location: "Emerson University, Multan",
-      numberofstudent: 92,
-    },
-    {
-      img: "https://via.placeholder.com/150",
-      title: "Classroom 3",
-      location: "Emerson University, Multan",
-      numberofstudent: 78,
-    },
-    {
-      img: "https://via.placeholder.com/150",
-      title: "Classroom 4",
-      location: "Oxford University, London",
-      numberofstudent: 88,
-    },
-    {
-      img: "https://via.placeholder.com/150",
-      title: "Classroom 5",
-      location: "Oxford University, London",
-      numberofstudent: 95,
-    },
-    {
-      img: "https://via.placeholder.com/150",
-      title: "Classroom 6",
-      location: "Harvard University, Cambridge",
-      numberofstudent: 90,
-    },
-    {
-      img: "https://via.placeholder.com/150",
-      title: "Classroom 7",
-      location: "Harvard University, Cambridge",
-      numberofstudent: 80,
-    },
-    {
-      img: "https://via.placeholder.com/150",
-      title: "Classroom 8",
-      location: "Emerson University, Multan",
-      numberofstudent: 85,
-    },
-  ];
+  // const classroomsData = [
+  //   {
+  //     img: "https://via.placeholder.com/150",
+  //     title: "Classroom 1",
+  //     location: "Emerson University, Multan",
+  //     numberofstudent: 85,
+  //   },
+  //   {
+  //     img: "https://via.placeholder.com/150",
+  //     title: "Classroom 2",
+  //     location: "Emerson University, Multan",
+  //     numberofstudent: 92,
+  //   },
+  //   {
+  //     img: "https://via.placeholder.com/150",
+  //     title: "Classroom 3",
+  //     location: "Emerson University, Multan",
+  //     numberofstudent: 78,
+  //   },
+  //   {
+  //     img: "https://via.placeholder.com/150",
+  //     title: "Classroom 4",
+  //     location: "Oxford University, London",
+  //     numberofstudent: 88,
+  //   },
+  //   {
+  //     img: "https://via.placeholder.com/150",
+  //     title: "Classroom 5",
+  //     location: "Oxford University, London",
+  //     numberofstudent: 95,
+  //   },
+  //   {
+  //     img: "https://via.placeholder.com/150",
+  //     title: "Classroom 6",
+  //     location: "Harvard University, Cambridge",
+  //     numberofstudent: 90,
+  //   },
+  //   {
+  //     img: "https://via.placeholder.com/150",
+  //     title: "Classroom 7",
+  //     location: "Harvard University, Cambridge",
+  //     numberofstudent: 80,
+  //   },
+  //   {
+  //     img: "https://via.placeholder.com/150",
+  //     title: "Classroom 8",
+  //     location: "Emerson University, Multan",
+  //     numberofstudent: 85,
+  //   },
+  // ];
 
-  const [classrooms, setClassrooms] = useState(classroomsData);
-  const [filteredClassrooms, setFilterClassrooms] = useState(classroomsData);
+  const { data: ClassRoomData } = useQuery({
+    queryKey: ["ClassRoomData"],
+    queryFn: GetAllClasses,
+  });
+
+  const [classrooms, setClassrooms] = useState([]);
+  const [filteredClassrooms, setFilterClassrooms] = useState([]);
   const [selectedUniversity, setSelectedUniversity] = useState([]);
   const [showFilter, setShowFilter] = useState(false);
 
@@ -86,7 +93,7 @@ const Home = () => {
   };
   const applyFilters = (name) => {
     const filteredClasses = classrooms.filter((classroom) => {
-      const matchesName = classroom.title
+      const matchesName = classroom.className
         .toLowerCase()
         .includes(name.toLowerCase());
       const matchesUniversity =
@@ -104,9 +111,11 @@ const Home = () => {
   }, [selectedUniversity]);
 
   useEffect(() => {
-    setClassrooms(classroomsData);
-    setFilterClassrooms(classroomsData);
-  }, []);
+    if (ClassRoomData) {
+      setClassrooms(ClassRoomData);
+      setFilterClassrooms(ClassRoomData);
+    }
+  }, [ClassRoomData]);
 
   return (
     <>
@@ -169,9 +178,10 @@ const Home = () => {
           </div>
         </div>
         <div className="classrooms">
-          {filteredClassrooms.map((classroom, index) => (
-            <ClassRoomCard key={index} classroom={classroom} />
-          ))}
+          {filteredClassrooms &&
+            filteredClassrooms?.map((classroom, index) => (
+              <ClassRoomCard key={classroom.classID} classroom={classroom} />
+            ))}
         </div>
       </div>
     </>

@@ -6,15 +6,14 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import CDropdown from "../../components/FormComponents/CDropDown";
 import { Dialog } from "primereact/dialog";
+import { useMutation } from "@tanstack/react-query";
+import { CreateClassRoom } from "../../Services/MainAppService";
 const CreateRoom = () => {
   const { control, handleSubmit, reset, setValue } = useForm({
     defaultValues: {
       className: "",
-      classImage: "",
-      university: "",
-      noOfStudents:0,
-      rollNoPrefix:"",
-      students: [],
+      imageUrl: "",
+      universityName: "",
     },
   });
 
@@ -22,18 +21,19 @@ const CreateRoom = () => {
     control,
     name: "students",
   });
-
+  const ceateClassMutation = useMutation({
+    mutationFn: CreateClassRoom,
+  });
   const onSubmit = (data) => {
     console.log(data);
-    if (data.students.length === 0) {
-      notify("warning", "Add atleast one student");
-      return;
-    }
-
-    reset({
-      className: "",
-      classImage: "",
-      students: [],
+    // if (data.students.length === 0) {
+    //   notify("warning", "Add atleast one student");
+    //   return;
+    // }
+    ceateClassMutation.mutate({
+      className: data.className,
+      imageUrl: data.imageUrl,
+      universityName: data.universityName,
     });
   };
 
@@ -84,7 +84,7 @@ const CreateRoom = () => {
           <div className="inputbox">
             <CustomTextInput
               control={control}
-              name="university"
+              name="universityName"
               label="University name"
               type="text"
               rules={{ required: true }}
@@ -95,7 +95,7 @@ const CreateRoom = () => {
           <div className="inputbox">
             <CustomTextInput
               control={control}
-              name="classImage"
+              name="imageUrl"
               label="Class image URL"
               type="text"
               rules={{ required: true }}
@@ -103,7 +103,7 @@ const CreateRoom = () => {
               errorMessage="This field is required!"
             />
           </div>
-          <div className="inputbox">
+          {/* <div className="inputbox">
             <CustomTextInput
               control={control}
               name="noOfStudents"
@@ -113,8 +113,8 @@ const CreateRoom = () => {
               placeholder="Total no students"
               errorMessage="This field is required!"
             />
-          </div>
-          <div className="inputbox">
+          </div> */}
+          {/* <div className="inputbox">
             <CustomTextInput
               control={control}
               name="rollNoPrefix"
@@ -124,11 +124,11 @@ const CreateRoom = () => {
               placeholder="eg: MCEIT-20-"
               errorMessage="This field is required!"
             />
-          </div>
+          </div> */}
         </div>
         {/* Submit Classroom */}
       </form>
-     
+
       {/* Add Student Section */}
       {/* <div className="add-student">
         <h2>Add Students</h2>
