@@ -69,6 +69,7 @@ const Home = () => {
     const filteredClasses = classrooms.filter((classroom) =>
       classroom.title.toLowerCase().includes(name.toLowerCase())
     );
+    console.log(filteredClasses)
     setFilterClassrooms(filteredClasses);
   };
 
@@ -99,11 +100,12 @@ const Home = () => {
     setClassrooms(classroomsData);
     setFilterClassrooms(classroomsData);
   }, []);
-
+    
   return (
     <>
       <div className="classroompage">
         <h1>Classrooms</h1>
+        <div className="searchfilter">
         <div className="searchbox">
           <CustomTextInput
             control={method.control}
@@ -112,12 +114,22 @@ const Home = () => {
             placeHolder="Enter classroom name"
             onChange={(e) => {
               filterClassroomsByName(e.target.value);
-              filterClassroomsByUniversity();
+              // filterClassroomsByUniversity();
             }}
           />
         </div>
+        <div className="dropdown">
+        <p>select university</p>
+          {/* <select name="uni" id="uni">
+            <option value="emu">emu</option>
+            <option value="gc">GC</option>
+            <option value="SU">SU</option>
+          </select> */}
+        </div>
+        </div>
+       
         <div className="classrooms">
-          <div className="Classroomfilter">
+          {/* <div className="Classroomfilter">
             <div className="universitybox">
               <input
                 type="checkbox"
@@ -148,7 +160,7 @@ const Home = () => {
               />
               <label htmlFor="harvard">Harvard University</label>
             </div>
-          </div>
+          </div> */}
           {filteredClassrooms.map((classroom, index) => (
             <ClassRoomCard key={index} classroom={classroom} />
           ))}

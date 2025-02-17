@@ -78,15 +78,29 @@
     padding: 0 20px;
 
 }
+.classroompage .searchfilter{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  }
 .classroompage .searchbox{
     display: flex;
     justify-content: center;
-    margin: 0 auto;
+    /* margin: 0 auto; */
     align-items: center;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
     max-width: 600px;
+    flex: 1;
 }
+.classroompage .dropdown{
+  background-color: #e2e2e2;
+  margin-bottom: 8px;
 
+
+}
+.classroompage .dropdown p{
+  margin: 12px 4px;
+}
 
 .classroompage .classrooms {
     display: flex;
@@ -94,7 +108,7 @@
     justify-content: center;
     margin-top: 2rem;
     gap: 1rem;
-    margin-left: 200px;
+    /* margin-left: 200px; */
   }
   .classroompage .classrooms .Classroomfilter{
     display: flex;
