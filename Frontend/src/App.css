@@ -1,0 +1,15 @@
+.p-menubar-button{
+    display: none !important;
+}
+.input-box{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.input-box > div{
+    min-width: 100px;
+}
+.custom-input-container{
+    display: flex;flex-direction: column;
+}
